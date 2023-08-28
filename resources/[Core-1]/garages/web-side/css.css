@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+html,body {
+	margin: 0;
+	color: #ffffff;
+	font-size: 12px;
+	overflow: hidden;
+	background: transparent;
+	font-family: "Roboto",Arial,Helvetica,sans-serif;
+	height: 100px;
+}
+
+::-webkit-scrollbar { width: 0; }
+::selection { background: transparent; }
+::-moz-selection { background: transparent; }
+
+#displayHud {
+	right: 0;
+	width: 23vw;
+	display: none;
+	padding: 20px;
+	min-height: 100%;
+	max-height: 100%;
+	position: absolute;
+	background: #444444a9;
+
+	
+}
+
+#buttons {
+	display: flex;
+	justify-content: space-between;
+	height: 7vh;
+	
+}
+
+#vehList {
+	
+	height: 88vh;
+	overflow-y: scroll;
+}
+
+.spawnButtons{
+	background: #a122eb;
+	color: #ffffff;
+	width: 50%;
+	padding: 10px;
+	border-radius: 5px;
+	margin: 5px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	transition: 0.5s;
+}
+
+.spawnButtons:hover{
+	opacity: 0.5;
+	transition: 0.5s;
+}
+
+
+#spawnVehicle b, #storeVehicle b {
+	font-size: 18px;
+	font-weight: bold;
+	
+	text-transform: uppercase;
+	color: rgba(255,255,255,0.9);
+}
+
+#vehicleName {
+	font-weight: bold;
+	font-size: 18px;
+	padding: 15px 25px;
+	color: #ffffff;
+	background: #252525;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	border-radius: 30px 30px 0 0;
+	
+}
+
+.vehicle {
+	margin-top: 10px;
+	border-radius: 30px;
+	color: #2c2c2c;
+	padding-bottom: 30px;
+	margin-bottom: 2vh;
+	background-color: #fff;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+
+.vehicle:last-child {
+	margin-bottom: 0;
+}
+
+.vehStatus{
+	display: flex;
+	flex-direction: column;
+	margin: 0 20px;
+
+}
+
+.vehicle.active {
+	background: #b6b6b6;
+}
+
+#vehicleLegend {
+
+	margin-top: 13px;
+	letter-spacing: 0.5vh;
+}
+
+#vehicleBack {
+	float: left;
+	height: 8px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 2px;
+	border-radius: 4px;
+	background: #a3a3a3;
+}
+
+#vehicleProgress {
+	float: left;
+	height: 8px;
+	width: 100px;
+	border-radius: 10px;
+	background: #000000;
+}

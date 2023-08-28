@@ -1,0 +1,127 @@
+* {
+	user-select: none;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	background-color: transparent;
+}
+
+.body {
+	right: 0;
+	top: 130px;
+	right: 20px;
+	height: 290px;
+	zoom: 1.0;
+	display: flex;
+	color: #fff;
+	padding: 15px 0;
+	overflow: hidden;
+	position: absolute;
+	align-items: flex-end;
+	flex-direction: column;
+}
+
+.container {
+	margin-right: 30px;
+}
+
+.notification {
+	position: relative;
+	display: flex;
+	width: 250px;
+	font-size: 10px;
+	padding: 20px 15px;
+	border-radius: 5px;
+	align-items: center;
+	margin-bottom: 10px;
+	border-radius: 7px;
+	background: linear-gradient(90deg, rgba(17, 17, 17, 0.4) 33.41%, rgba(17, 17, 17, 0) 100%);
+}
+
+.content {
+	font-size: 12px;
+}
+
+.buttons {
+	display: flex;
+}
+
+.content-line {
+	color: rgba(255, 255, 255, 0.37);
+	margin: 7px 0;
+	margin-left: 10px;
+}
+
+.content-line:last-child {
+	margin-bottom: 0;
+}
+
+.content-line .icon {
+	color: #fff;
+}
+
+.actions {
+	position: absolute;
+	top: 50%;
+	right: 35px;
+	transform: translate(0,-50%);
+}
+
+.chamados {
+	position: relative;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	margin-top: 5px;
+	border-radius: 14px;
+	align-items: center;
+	transition: all .2s;
+	justify-content: center;
+	background: rgba(17, 17, 17, 0.2);
+}
+
+.chamados:first-child {
+	margin-top: 0;
+}
+
+.chamados:hover {
+	background-color: #3190ddd3;
+}
+
+.chamados svg {
+	z-index: 99999999;
+	font-size: 13px;
+}
+
+.titulo {
+	position: relative;
+	display: flex;
+	margin: 0 10px;
+	overflow: hidden;
+	font-weight: bold;
+	white-space: nowrap;
+	align-items: center;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
+}
+
+.titulo .code {
+	padding: 3px 7px;
+	margin-right: 5px;
+	border-radius: 4px;
+	background: #3190ddd3;
+}
+
+::-webkit-scrollbar {
+	background: transparent;
+	width: 0;
+}
+
+::selection {
+	background: transparent;
+}
+
+::-moz-selection {
+	background: transparent;
+}

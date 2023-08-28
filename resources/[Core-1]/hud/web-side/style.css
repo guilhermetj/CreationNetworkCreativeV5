@@ -1,0 +1,245 @@
+@font-face {
+	font-family: digital;
+	src: url("font/DS-DIGI.TTF"); 
+}
+	html,body {
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	overflow: hidden;
+	font-family: "Roboto";
+	background: transparent;
+}
+
+#displayLogo {
+	top: 50px;
+	right: 50px;
+	width: 101px;
+	height: 78px;
+	opacity: 0.25;
+	position: absolute !important;
+	animation: creative 10s ease-out infinite;
+	background: url("images/server.png") no-repeat;
+}
+
+#server {
+	top: 7% !important;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 180px;
+	margin: 0 auto 0 auto;
+	position: absolute;
+}
+
+#server img {
+	max-width: 100%;
+}
+
+@keyframes creative {
+	10%,100% {
+		transform: rotateY(360deg);
+	}
+}
+
+#displayHud {
+	display: none;
+	min-width: 500px;
+	max-width: 500px;
+	position: fixed;
+	bottom: 0.85vw;
+	right: 2.25vw;
+}
+
+#displayBoxes {
+	float: right;
+	color: #c6c6c6da;
+	font-size: 10px;
+	min-width: 500px;
+	max-width: 500px;
+	text-align: right;
+	padding: 15px 0 15px;
+	letter-spacing: 0.5px;
+	text-shadow: 1px 1px #000;
+	position: fixed ;
+	bottom: 54.30vw;
+}
+
+#displayBoxes text {
+	padding: 6px 16px;
+	border-radius: 5px;
+	text-transform: uppercase;
+	background: linear-gradient(90deg, rgba(0, 0, 0, 0.534) 33.41%, rgba(0, 0, 0, 0.514) 100%);
+	margin-right: 10px;
+}
+
+#displayBoxes active {
+	color: #d1e8f7;
+	padding: 6px 16px;
+	border-radius: 5px;
+	margin-right: 18px;
+	text-transform: uppercase;
+	background: #406882;
+	text-shadow: none;
+}
+
+#displayBoxes inative {
+	padding: 6px 16px;
+	border-radius: 5px;
+	margin-right: 18px;
+	text-transform: uppercase;
+	background: linear-gradient(90deg, rgba(12, 12, 12, 0.548) 33.41%, rgba(0, 0, 0, 0.514) 100%);
+}
+
+#displayBoxes text:last-child {
+	margin-right: 0;
+}
+
+#displayInfos {
+	float: right;
+	min-width: 500px;
+	max-width: 500px;
+}
+
+.icoBox {
+	width: 34px;
+	float: right;
+	height: 34px;
+	margin-left: 10px;
+	border-radius: 16px;
+	position: relative !important;
+	background: linear-gradient(90deg, rgba(17, 17, 17, 0.4) 33.41%, rgba(17, 17, 17, 0) 100%);
+
+	overflow: hidden !important;
+}
+
+.icoBox img {
+	position: absolute;
+}
+
+.icoBox div {
+	bottom: 0;
+	position: absolute;
+	transition: all .5s;
+}
+
+.oxigen {
+	width: 34px;
+	height: 20px;
+	border-radius: 14px;
+	background: rgba(77,87,105,.75);
+
+	overflow: hidden !important;
+}
+
+.stress {
+	width: 34px;
+	height: 20px;
+	border-radius: 16px;
+	background: rgba(112, 78, 136, 0.61);
+
+	overflow: hidden !important;
+}
+
+.food {
+	width: 34px;
+	height: 20px;
+	border-radius: 16px;
+	background: rgba(255, 180, 105, 0.795);
+
+	overflow: hidden;
+}
+
+.water {
+	width: 34px;
+	height: 20px;
+	border-radius: 16px;
+	background: #3190ddd3;
+
+	overflow: hidden !important;
+}
+
+.armour {
+	width: 34px;
+	height: 20px;
+	border-radius: 16px;
+	background: rgba(255, 105, 105, 0.616);
+
+	overflow: hidden !important;
+}
+
+.health {
+	width: 34px;
+	height: 20px;
+	border-radius: 16px;
+	background: rgba(105, 255, 105, 0.5);
+
+	overflow: hidden !important;
+}
+
+#oxigen {
+	display: none;
+}
+
+#displayProgress {
+	display: none;
+	min-width: 166px;
+	max-width: 300px;
+	position: fixed;
+	right: 82.25vw;
+	bottom: 0.85vw;
+	border-radius: 2px;
+	background: linear-gradient(90deg, rgba(17, 17, 17, 0.4) 33.41%, rgba(17, 17, 17, 0) 100%);
+}
+
+.progress {
+	width: 0;
+	height: 10px;
+	border-radius: 2px;
+	background: #406882;
+}
+
+#movieTop {
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 12%;
+	display: none;
+	background: #000;
+	position: absolute !important;
+}
+
+#movieBottom {
+	left: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 12vw;
+	display: none;
+	background: #000;
+	position: absolute !important;
+}
+
+#hoodDisplay {
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: none;
+	background: #000;
+	position: absolute !important;
+}
+
+#Buttons {
+	float: left;
+	width: 78px;
+	margin-left: 10px;
+}
+
+#Mumble {
+	color: #ccc;
+	display: flex;
+	padding: 20px 0;
+	letter-spacing: 2px;
+	justify-content: center;
+	text-transform: uppercase;
+	background: rgba(15,15,15,.75);
+}

@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    cursor: default;
+}
+
+body {
+    display: none;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#background {
+    width: 67.70vw;
+    height: 42.27vw;
+    background: url(./img/background.svg) no-repeat;
+    background-size: cover;
+    border-radius: 2.34vw;
+    display: flex;
+    animation: crescendo 0.5s alternate ease-in-out;
+    overflow: hidden;
+}
+
+#scroll-bar {
+    width: 19.53vw;
+    height: 33.90vw;
+
+    background: #10194E;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 2.08vw 2.08vw;
+    margin-left: 3.43vw;
+    padding-top: 1.09vw;
+    position: absolute;
+    z-index: 10;
+}
+
+.fechado {
+    transition: 1s ease-in-out;
+}
+
+.fechado #scroll {
+    animation: scrollx 1s alternate ease-in-out;
+    /* display: none; */
+}
+
+@keyframes scrollx {
+    0%   {height: 32.81vw}
+    /* 10% {height: 90px;}
+    25% {height: 180px;}
+    95% {height: 250px;} */
+    99% {height: 0px;}
+    100% { display: none; }
+}
+
+.fechado #scroll-bar {
+    height: 2.60vw;
+    transition: 1s ease-in-out;
+}
+
+.aberto {
+    transition: 1s ease-in-out;
+}
+
+.aberto #scroll {
+    display: block;
+    animation: scrollz 1s alternate ease-in-out;
+}
+
+@keyframes scrollz {
+    0%   {height: 0px}
+    /* 10% {height: 90px;}
+    25% {height: 180px;}
+    95% {height: 250px;} */
+    100% {height: 32.81vw;}
+}
+
+.aberto #scroll-bar {
+    height: 33.90vw;
+    transition: 1s ease-in-out;
+}
+
+#scroll {
+    width: 17.23vw;
+    height: 32.81vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    direction: rtl;
+    margin: auto;
+    background: 
+    linear-gradient(#10194e 33%, rgba(116,232,168, 0)),
+    linear-gradient(rgba(116,232,168, 0), #10194E 66%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(6, 0, 31, 0.527), rgba(1, 2, 14, 0.007)),
+    radial-gradient(farthest-side at 50% 100%, rgba(6, 0, 31, 0.527), rgba(1, 2, 14, 0.007)) 0 100%;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+    background-size: 100% 45px, 100% 45px, 100% 15px, 100% 15px;
+}
+
+.car {
+    width: 14.89vw;
+    height: 5.72vw;
+    background: rgba(84, 98, 194, 0.17);
+    border-radius: 0.52vw;
+    margin: auto -0px;
+    margin-top: 0.93vw;
+    margin-bottom: 1.35vw;
+    direction: ltr;
+    cursor: pointer;
+}
+
+#scroll::-webkit-scrollbar {
+    background: rgba(40, 50, 108, 0.22);
+    border-radius: 0.52vw;
+    width: 0.67vw;
+}
+
+#scroll::-webkit-scrollbar-thumb {
+    background: #5462C2;
+    border-radius: 0.52vw;
+    width: 0.67vw;
+}
+
+#button {
+    width: 3.33vw;
+    height: 0.67vw;
+
+    background: #4E589F;
+    border-radius: 0.52vw;
+    transform: rotate(-180deg);
+    margin: auto;
+}
+
+.nome {
+    max-width: 6.25vw;
+    height: 0.88vw;
+
+    background: #5462C2;
+    border-radius: 0.52vw 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nome h6 {
+    font-family: Orbitron;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.59vw;
+    line-height: 0.67vw;
+    text-align: center;
+    letter-spacing: 0.03vw;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.image {
+    width: 8.31vw;
+    height: 4.68vw;
+    /* background: url(./img/bmwx1.png) no-repeat; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: rotate(-360deg);
+    margin: auto;
+    cursor: pointer;
+}
+
+.line {
+    width:  8.90vw;
+    height: 0.20vw;
+
+    background: #FFFFFF;
+    border-radius: 0.52vw;
+    transform: rotate(180deg);
+    margin: auto;
+    margin-top: -0.15vw;
+    animation: line 0.8s alternate ease-in-out;
+}
+
+@keyframes line {
+    0%   {width: 0px}
+    50% {width: 1.56vw;}
+    70% {width: 3.64vw;}
+    80% {width: 9.89vw;}
+    100% {width: 8.90vw;}
+}
+
+#exposicao-car {
+    margin-left: 34.11vw;
+    margin-top: 4.89vw;
+    padding-left: 3.95vw;
+    animation: carro 0.7s alternate ease-in-out;
+}
+
+#exposicao-car h1 {
+    font-family: Orbitron;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 4.32vw;
+    line-height: 4.94vw;
+    text-align: center;
+    letter-spacing: 0.23vw;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+.tipo {
+    width: 4.63vw;
+    height: 1.35vw;
+    margin-left:  0.20vw;
+    background: #5838D7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tipo h6 {
+    font-family: Orbitron;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.90vw;
+    line-height: 1.04vw;
+
+    text-align: center;
+    letter-spacing: 0.048vw;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+#exposicao-image {
+    width: 39.58vw;
+    height: 21.96vw;
+
+    background: url(./img/bmwx1.png) no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: rotate(-360deg);
+    position: absolute;
+    margin-top: 2.60vw;
+    margin-left: -11.19vw;
+}
+
+@keyframes crescendo {
+    0%   {transform: scale(.1);}
+    50% {transform: scale(1.2);}
+    70% {transform: scale(1.1);}
+    80% {transform: scale(1.05);}
+    100% {transform: scale(1);}
+}
+
+.car .line {
+    display: none;
+    transition: 1s ease-in-out;
+}
+
+.car {
+    opacity: 50%;
+    transition: 1s ease-in-out;
+}
+
+.car:hover > .line {
+    display: block;
+}
+
+.car:hover {
+    opacity: 100%;
+    transition: 1s ease-in-out;
+}
+
+.active .line {
+    display: block;
+}
+
+.active {
+    opacity: 100%;
+}
+
+#retirar-guardar {
+    position: absolute;
+    width: 17.76vw;
+    height: 4.37vw;
+    z-index: 2;
+    background: #5838D7;
+    box-shadow: 0px 4px 4px 1px rgba(74, 73, 161, 0.53);
+    border-radius: 1.04vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 17.18vw;
+    bottom: 8.33vw;
+    animation: carro 0.7s alternate ease-in-out;
+}
+
+#retirar-guardar h3 {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.47vw;
+    line-height: 1.66vw;
+    text-align: center;
+    letter-spacing: 0.07vw;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+#guardar {
+    position: absolute;
+    width: 17.76vw;
+    height: 4.37vw;
+    z-index: 2;
+    background: #513f99;
+    box-shadow: 2px 2px 2px 3px #513f99;
+    border: 4px #513f99;;
+    border-radius: 1.04vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 39.18vw;
+    bottom: 8.33vw;
+    animation: carro 0.7s alternate ease-in-out;
+}
+
+#guardar h3 {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.47vw;
+    line-height: 1.66vw;
+    text-align: center;
+    letter-spacing: 0.07vw;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+#bar {
+    position: absolute;
+    width:  2.86vw;
+    height:  2.86vw;
+    z-index: 3;
+    right: 17.18vw;
+    top:  8.33vw;
+    background: url(./img/bar.svg) no-repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: carro 0.7s alternate ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+@keyframes carro {
+    0%   {transform: scale(.1);}
+    50% {transform: scale(1.1);}
+    70% {transform: scale(1.05);}
+    80% {transform: scale(1.02);}
+    100% {transform: scale(1);}
+}
+
+#bar-container {
+    display: none;
+    position: absolute;
+}

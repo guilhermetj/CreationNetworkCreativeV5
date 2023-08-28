@@ -1,0 +1,28 @@
+<svg width="1300" height="800" viewBox="0 0 1300 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1300" height="800" rx="45" fill="#010A43"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 691.845C0 675.485 8.87837 660.414 23.1875 652.485L54 635.409C108 605.483 217 545.632 325 500.744C433 455.855 542 425.929 650 440.892C758 455.855 867 515.706 975 530.669C1083 545.632 1192 515.706 1246 500.744C1273.15 493.22 1300 513.642 1300 541.815V755C1300 779.853 1279.85 800 1255 800H1246C1192 800 1083 800 975 800C867 800 758 800 650 800C542 800 433 800 325 800C217 800 108 800 54 800H45C20.1472 800 0 779.853 0 755V691.845Z" fill="#0B1762" fill-opacity="0.4"/>
+<g opacity="0.3">
+<path d="M913.084 783.863L913.985 745.363L946.876 765.394L913.084 783.863Z" stroke="#E7E7E7" stroke-width="1.99107" stroke-linejoin="round"/>
+<path d="M916.108 798.934L917.064 758.136L951.918 779.362L916.108 798.934Z" stroke="#E7E7E7" stroke-width="0.66369" stroke-linejoin="round"/>
+</g>
+<circle cx="921" cy="454" r="312" fill="#10194E"/>
+<circle cx="921" cy="454" r="234" fill="#192259"/>
+<g opacity="0.3">
+<path d="M1237.08 171.863L1237.99 133.363L1270.88 153.394L1237.08 171.863Z" stroke="#E7E7E7" stroke-width="1.99107" stroke-linejoin="round"/>
+<path d="M1240.11 186.934L1241.06 146.136L1275.92 167.362L1240.11 186.934Z" stroke="#E7E7E7" stroke-width="0.66369" stroke-linejoin="round"/>
+</g>
+<path opacity="0.3" d="M486 88.1953L501.449 104.273L511.053 92.5801L522.536 104.273L535.063 92.5801L549.051 106.779" stroke="#E7E7E7" stroke-width="2.65476"/>
+<path opacity="0.3" d="M162 700.195L177.449 716.273L187.053 704.58L198.536 716.273L211.063 704.58L225.051 718.779" stroke="#E7E7E7" stroke-width="2.65476"/>
+<g opacity="0.3">
+<circle cx="892.985" cy="70.2738" r="12.2783" stroke="white" stroke-width="1.99107"/>
+<circle cx="900.286" cy="83.5472" r="12.942" stroke="white" stroke-width="0.66369"/>
+</g>
+<g opacity="0.3">
+<circle cx="568.985" cy="682.274" r="12.2783" stroke="white" stroke-width="1.99107"/>
+<circle cx="576.286" cy="695.547" r="12.942" stroke="white" stroke-width="0.66369"/>
+</g>
+<g opacity="0.3">
+<circle cx="600.985" cy="288.274" r="12.2783" stroke="white" stroke-width="1.99107"/>
+<circle cx="608.286" cy="301.547" r="12.942" stroke="white" stroke-width="0.66369"/>
+</g>
+</svg>
