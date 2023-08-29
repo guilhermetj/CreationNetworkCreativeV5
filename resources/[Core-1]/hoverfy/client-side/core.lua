@@ -38,7 +38,7 @@ CreateThread(function()
 				if Zone[gridZone] then
 					for _,Table in pairs(Zone[gridZone]) do
 						if #(Coords - Table["Coords"]) < Table["Distance"] then
-							print(Table["key"])
+					
 							SendNUIMessage({ show = true, key = Table["key"], title = Table["title"], legend = Table["legend"] })
 							Select = Table
 							Active = true

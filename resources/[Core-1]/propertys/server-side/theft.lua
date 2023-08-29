@@ -15,14 +15,11 @@ local myHomeList = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 local infoInterior = {
 	[1] = { ["interior"] = "Beach" },
-	[2] = { ["interior"] = "Franklin" },
+	[2] = { ["interior"] = "Motel" },
 	[3] = { ["interior"] = "Middle" },
-	[4] = { ["interior"] = "Modern" },
-	[5] = { ["interior"] = "Motel" },
-	[6] = { ["interior"] = "Square" },
-	[7] = { ["interior"] = "ThreeFloors" },
-	[8] = { ["interior"] = "Trailer" },
-	[9] = { ["interior"] = "TwoFloors" }
+	[4] = { ["interior"] = "Square" },
+	[5] = { ["interior"] = "TwoFloors" },
+	[6] = { ["interior"] = "ThreeFloors" },
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- HOMES
@@ -1506,11 +1503,9 @@ end)
 -- ENTERHOMES
 -----------------------------------------------------------------------------------------------------------------------------------------
 exports("enterHomes",function(source,Passport,TheftName,status)
-	-- if homeInterior[TheftName] == nil then
-	-- 	homeInterior[TheftName] = infoInterior[math.random(#infoInterior - 1)]["interior"]
-	-- end
-	homeInterior[TheftName] = "Middle"
-
+	if homeInterior[TheftName] == nil then
+		homeInterior[TheftName] = infoInterior[math.random(#infoInterior - 1)]["interior"]
+	end
 	setNetwork(source,Passport,TheftName,status)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------

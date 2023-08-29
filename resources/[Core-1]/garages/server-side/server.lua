@@ -18,6 +18,7 @@ vCLIENT = Tunnel.getInterface("garages")
 local vehSpawn = {}
 local vehSignal = {}
 local searchTimers = {}
+local Propertys = {}
 GlobalState["vehPlates"] = {}
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- SERVERVEHICLE
@@ -770,24 +771,87 @@ AddEventHandler("garages:removeGarages",function(homeName)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- GARAGES:PROPERTYS
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("garages:Propertys")
+AddEventHandler("garages:Propertys",function(Name)
+	local source = source
+	local Passport = vRP.getUserId(source)
+	if Passport then
+		TriggerClientEvent("dynamic:closeSystem",source)
+		TriggerClientEvent("Notify",source,"amarelo","Selecione o local da garagem.",5000)
+
+		local Hash = "prop_offroad_tyres02"
+		local Application,Coords,Heading = vRPC.objectCoords2(source,Hash)
+		print(Name)
+		print(Application)
+		print(Coords)
+		print(Heading)
+		if Application then
+			local exportsPropertys = exports["propertys"]:Coords(Name)
+			print(exportsPropertys)
+			if #(Coords - exportsPropertys) <= 25 then
+				TriggerClientEvent("Notify",source,"amarelo","Selecione o local do veículo.",5000)
+
+				local Open = Coords
+				local Hash = "patriot"
+				local Application,Coords,Heading = vRPC.objectCoords2(source,Hash)
+				if Application then
+					if #(Coords - exportsPropertys) <= 25 then
+						local New = {
+							["1"] = { mathLength(Open["x"]),mathLength(Open["y"]),mathLength(Open["z"] + 1) },
+							["2"] = { mathLength(Coords["x"]),mathLength(Coords["y"]),mathLength(Coords["z"] + 1),mathLength(Heading) }
+						}
+
+						garageLocates[Name] = { name = "Garage", payment = false }
+
+						Propertys[Name] = {
+							["x"] = New["1"][1],
+							["y"] = New["1"][2],
+							["z"] = New["1"][3],
+							["1"] = New["2"]
+						}
+
+						vRP.query("propertys/Garage",{ name = Name, garage = json.encode(New) })
+						TriggerClientEvent("garages:Propertys",-1,Propertys)
+					else
+						TriggerClientEvent("Notify",source,"amarelo","A garagem precisa ser próximo da entrada.",5000)
+					end
+				end
+			else
+				TriggerClientEvent("Notify",source,"amarelo","A garagem precisa ser próximo da entrada.",5000)
+			end
+		end
+	end
+end)
+function mathLength(Number)
+	return math.ceil(Number * 100) / 100
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- ASYNCFUNCTION
 -----------------------------------------------------------------------------------------------------------------------------------------
-Citizen.CreateThread(function()
-	local configFile = LoadResourceFile("logsystem","garageConfig.json")
-	local configTable = json.decode(configFile)
+CreateThread(function()
+	local Consult = vRP.query("propertys/Garages")
+	for _,v in pairs(Consult) do
+		local Name = v["Name"]
+		if not Propertys[Name] and v["Garage"] ~= "{}" then
+			local Table = json.decode(v["Garage"])
+			garageLocates[Name] = { name = "Garage", payment = false }
 
-	for k,v in pairs(configTable) do
-		garageLocates[k] = v
+			Propertys[Name] = {
+				["x"] = Table["1"][1],
+				["y"] = Table["1"][2],
+				["z"] = Table["1"][3],
+				["1"] = Table["2"]
+			}
+		end
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERCONNECT
 -----------------------------------------------------------------------------------------------------------------------------------------
 AddEventHandler("playerConnect",function(user_id,source)
-	local locatesFile = LoadResourceFile("logsystem","garageLocates.json")
-	local locatesTable = json.decode(locatesFile)
-
-	TriggerClientEvent("garages:allLocs",source,locatesTable)
+	TriggerClientEvent("garages:Propertys",source,Propertys)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PLAYERDISCONNECT
@@ -803,3 +867,4 @@ end)
 exports("vehSignal",function(vehPlate)
 	return vehSignal[vehPlate]
 end)
+

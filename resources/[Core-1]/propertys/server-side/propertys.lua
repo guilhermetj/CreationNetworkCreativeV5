@@ -1216,5 +1216,6 @@ Propertys = {
 -- COORDS
 -----------------------------------------------------------------------------------------------------------------------------------------
 exports("Coords",function(Name)
+	print("Entrou no export")
 	return Propertys[Name]
 end)

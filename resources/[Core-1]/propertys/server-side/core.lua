@@ -11,7 +11,7 @@ Xurupita = {}
 Tunnel.bindInterface("propertys",Xurupita)
 vCLIENT = Tunnel.getInterface("propertys")
 vKEYBOARD = Tunnel.getInterface("keyboard")
-vSKINSHOP = Tunnel.getInterface("skinshop")
+vSKINSHOP = Tunnel.getInterface("nation_skinshop")
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- VARIABLES
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -65,6 +65,15 @@ AddEventHandler("propertys:Toggle",function(Name)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- CHECKHOTEL
+-----------------------------------------------------------------------------------------------------------------------------------------
+exports("checkHotel",function(Passport)
+	if Inside[Passport] then
+			return true
+	end
+	return false
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- PROPERTYS:BUY
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterServerEvent("propertys:Buy")
@@ -79,7 +88,7 @@ AddEventHandler("propertys:Buy",function(Name)
 		if not Consult[1] then
 			TriggerClientEvent("dynamic:closeSystem",source)
 
-			if vRP.request(source,"Deseja comprar a propriedade?","Sim, assinar papelada","Não, mudeia de ideia") then
+			if vRP.request(source,"Deseja comprar a propriedade?","Sim","Não") then
 				if vRP.paymentFull(Passport,Informations[Interior]["Price"]) then
 					Markers[Name] = true
 					local Serial = PropertysSerials()
@@ -128,7 +137,7 @@ AddEventHandler("propertys:Sell",function(Name)
 			if parseInt(Consult[1]["Passport"]) == Passport then
 				TriggerClientEvent("dynamic:closeSystem",source)
 
-				if vRP.Request(source,"Deseja vender a propriedade?","Sim, concluir a venda","Não, mudeia de ideia") then
+				if vRP.request(source,"Deseja vender a propriedade por 75% do valor?","Sim","Não") then
 					if Markers[Name] then
 						Markers[Name] = nil
 						TriggerClientEvent("propertys:Markers",-1,Markers)
@@ -139,7 +148,7 @@ AddEventHandler("propertys:Sell",function(Name)
 
 					vRP.query("propertys/Sell",{ name = Name })
 					TriggerClientEvent("Notify",source,"amarelo","Venda concluída.",5000)
-					vRP.GiveBank(Passport,Informations[Consult[1]["Interior"]]["Price"] * 0.75)
+					vRP.giveBankMoney(Passport,Informations[Consult[1]["Interior"]]["Price"] * 0.75)
 				end
 			end
 		end
@@ -158,8 +167,10 @@ AddEventHandler("propertys:Credentials",function(Name)
 			if parseInt(Consult[1]["Passport"]) == Passport then
 				TriggerClientEvent("dynamic:closeSystem",source)
 
-				if vRP.Request(source,"Você escolheu reconfigurar todos os cartões de segurança, lembrando que ao prosseguir todos os cartões vão deixar de funcionar, deseja prosseguir?","Sim, prosseguir","Não, outra hora") then
+				if vRP.request(source,"Você escolheu reconfigurar todos os cartões de segurança, lembrando que ao prosseguir todos os cartões vão deixar de funcionar, deseja prosseguir?","Sim","Não") then
 					local Serial = PropertysSerials()
+					local teste = "propertys-"..Serial
+					print(teste)
 					vRP.query("propertys/Credentials",{ name = Name, serial = Serial })
 					vRP.generateItem(Passport,"propertys-"..Serial,Consult[1]["Keys"],true)
 				end
@@ -175,7 +186,7 @@ function Xurupita.Clothes()
 	local Passport = vRP.getUserId(source)
 	if Passport then
 		local Clothes = {}
-		local Consult = vRP.GetSrvData("Wardrobe:"..Passport)
+		local Consult = vRP.getSrvdata("Wardrobe:"..Passport)
 
 		for Table,_ in pairs(Consult) do
 			Clothes[#Clothes + 1] = { ["name"] = Table }
@@ -193,7 +204,7 @@ AddEventHandler("propertys:Clothes",function(Mode)
 	local Passport = vRP.getUserId(source)
 	if Passport then
 		local Split = splitString(Mode,"-")
-		local Consult = vRP.GetSrvData("Wardrobe:"..Passport,true)
+		local Consult = vRP.getSrvdata("Wardrobe:"..Passport,true)
 		local Name = Split[2]
 
 		if Split[1] == "save" then
@@ -203,8 +214,8 @@ AddEventHandler("propertys:Clothes",function(Mode)
 				local NameCheck = sanitizeString(Keyboard[1],"abcdefghijklmnopqrstuvwxyz0123456789",true)
 
 				if not Consult[NameCheck] then
-					Consult[NameCheck] = vSKINSHOP.Customization(source)
-					vRP.SetSrvData("Wardrobe:"..Passport,Consult,true)
+					Consult[NameCheck] = vSKINSHOP.getCloths(source)
+					vRP.setSrvdata("Wardrobe:"..Passport,Consult,true)
 					TriggerClientEvent("propertys:ClothesReset",source)
 					TriggerClientEvent("Notify",source,"verde","<b>"..Name.."</b> adicionado.",5000)
 				else
@@ -214,7 +225,7 @@ AddEventHandler("propertys:Clothes",function(Mode)
 		elseif Split[1] == "delete" then
 			if Consult[Name] then
 				Consult[Name] = nil
-				vRP.SetSrvData("Wardrobe:"..Passport,Consult,true)
+				vRP.setSrvdata("Wardrobe:"..Passport,Consult,true)
 				TriggerClientEvent("propertys:ClothesReset",source)
 				TriggerClientEvent("Notify",source,"verde","<b>"..Name.."</b> removido.",5000)
 			else
@@ -222,12 +233,21 @@ AddEventHandler("propertys:Clothes",function(Mode)
 			end
 		elseif Split[1] == "apply" then
 			if Consult[Name] then
-				TriggerClientEvent("skinshop:Apply",source,Consult[Name])
+				TriggerClientEvent("updateRoupas",source,Consult[Name])
 				TriggerClientEvent("Notify",source,"verde","<b>"..Name.."</b> aplicado.",5000)
 			else
 				TriggerClientEvent("Notify",source,"amarelo","A vestimenta salva não se encontra mais em seu armário.",5000)
 			end
 		end
+	end
+end)
+RegisterNetEvent("propertys:openShop")
+AddEventHandler("propertys:openShop",function()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	if user_id then
+		TriggerClientEvent("dynamic:closeSystem",source)
+		TriggerClientEvent("nation_skinshop:toggleMenu",source,"nation_creator")
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -245,77 +265,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- OPENCHEST
 -----------------------------------------------------------------------------------------------------------------------------------------
--- function Xurupita.OpenChest(Name,Mode)
--- 	local source = source
--- 	local Passport = vRP.getUserId(source)
--- 	if Passport then
--- 		local Chest = {}
--- 		local Inventory = {}
--- 		local Inv = vRP.Inventory(Passport)
--- 		local Consult = vRP.GetSrvData(Mode..":"..Name)
 
--- 		for k,v in pairs(Inv) do
--- 			v["amount"] = parseInt(v["amount"])
--- 			v["name"] = itemName(v["item"])
--- 			v["peso"] = itemWeight(v["item"])
--- 			v["index"] = itemIndex(v["item"])
--- 			v["max"] = itemMaxAmount(v["item"])
--- 			v["economy"] = parseFormat(itemEconomy(v["item"]))
--- 			v["desc"] = itemDescription(v["item"])
--- 			v["key"] = v["item"]
--- 			v["slot"] = k
-
--- 			local Split = splitString(v["item"],"-")
--- 			if Split[2] ~= nil then
--- 				if itemDurability(v["item"]) then
--- 					v["durability"] = parseInt(os.time() - Split[2])
--- 					v["days"] = itemDurability(v["item"])
--- 				else
--- 					v["durability"] = 0
--- 					v["days"] = 1
--- 				end
--- 			else
--- 				v["durability"] = 0
--- 				v["days"] = 1
--- 			end
-
--- 			Inventory[k] = v
--- 		end
-
--- 		for k,v in pairs(Consult) do
--- 			v["amount"] = parseInt(v["amount"])
--- 			v["name"] = itemName(v["item"])
--- 			v["peso"] = itemWeight(v["item"])
--- 			v["index"] = itemIndex(v["item"])
--- 			v["max"] = itemMaxAmount(v["item"])
--- 			v["economy"] = parseFormat(itemEconomy(v["item"]))
--- 			v["desc"] = itemDescription(v["item"])
--- 			v["key"] = v["item"]
--- 			v["slot"] = k
-
--- 			local Split = splitString(v["item"],"-")
--- 			if Split[2] ~= nil then
--- 				if itemDurability(v["item"]) then
--- 					v["durability"] = parseInt(os.time() - Split[2])
--- 					v["days"] = itemDurability(v["item"])
--- 				else
--- 					v["durability"] = 0
--- 					v["days"] = 1
--- 				end
--- 			else
--- 				v["durability"] = 0
--- 				v["days"] = 1
--- 			end
-
--- 			Chest[k] = v
--- 		end
-
--- 		local Exist = vRP.query("propertys/Exist",{ name = Name })
--- 		if Exist[1] then
--- 			return Inventory,Chest,vRP.InventoryWeight(Passport),vRP.GetWeight(Passport),vRP.ChestWeight(Consult),Exist[1][Mode]
--- 		end
--- 	end
--- end
 function Xurupita.openChest(homeName,vaultMode)
 	print("openChest")
 	local source = source
@@ -466,36 +416,7 @@ local noStore = {
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STORE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- function Xurupita.Store(Item,Slot,Amount,Target,Name,Mode)
--- 	local source = source
--- 	local Amount = parseInt(Amount)
--- 	local Passport = vRP.getUserId(source)
--- 	if Passport then
--- 		if Amount <= 0 then Amount = 1 end
 
--- 		if itemBlock(Item) or (Mode == "Vault" and BlockChest(Item)) or (Mode == "Fridge" and not BlockChest(Item)) then
--- 			TriggerClientEvent("propertys:Update",source)
--- 			return
--- 		end
-
--- 		local Consult = vRP.query("propertys/Exist",{ name = Name })
--- 		if Consult[1] then
--- 			if Item == "diagram" then
--- 				if vRP.TakeItem(Passport,Item,Amount,false,Slot) then
--- 					vRP.query("propertys/"..Mode,{ name = Name, weight = 10 * Amount })
--- 					TriggerClientEvent("propertys:Update",source)
--- 				end
--- 			else
--- 				if vRP.StoreChest(Passport,Mode..":"..Name,Amount,Consult[1][Mode],Slot,Target) then
--- 					TriggerClientEvent("propertys:Update",source)
--- 				else
--- 					local Result = vRP.GetSrvData(Mode..":"..Name)
--- 					TriggerClientEvent("propertys:Weight",source,vRP.InventoryWeight(Passport),vRP.GetWeight(Passport),vRP.ChestWeight(Result),Consult[1][Mode])
--- 				end
--- 			end
--- 		end
--- 	end
--- end
 function Xurupita.storeItem(nameItem,slot,amount,target,homeName,vaultMode)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -532,24 +453,7 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- function Xurupita.Take(Slot,Amount,Target,Name,Mode)
--- 	local source = source
--- 	local Amount = parseInt(Amount)
--- 	local Passport = vRP.getUserId(source)
--- 	if Passport then
--- 		if Amount <= 0 then Amount = 1 end
 
--- 		if vRP.TakeChest(Passport,Mode..":"..Name,Amount,Slot,Target) then
--- 			TriggerClientEvent("propertys:Update",source)
--- 		else
--- 			local Consult = vRP.query("propertys/Exist",{ name = Name })
--- 			if Consult[1] then
--- 				local Result = vRP.GetSrvData(Mode..":"..Name)
--- 				TriggerClientEvent("propertys:Weight",source,vRP.InventoryWeight(Passport),vRP.GetWeight(Passport),vRP.ChestWeight(Result),Consult[1][Mode])
--- 			end
--- 		end
--- 	end
--- end
 function Xurupita.takeItem(slot,amount,target,homeName,vaultMode)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -577,18 +481,6 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- function Xurupita.Update(Slot,Target,Amount,Name,Mode)
--- 	local source = source
--- 	local Amount = parseInt(Amount)
--- 	local Passport = vRP.getUserId(source)
--- 	if Passport then
--- 		if Amount <= 0 then Amount = 1 end
-
--- 		if vRP.UpdateChest(Passport,Mode..":"..Name,Slot,Target,Amount) then
--- 			TriggerClientEvent("propertys:Update",source)
--- 		end
--- 	end
--- end
 function Xurupita.updateChest(slot,target,amount,homeName,vaultMode)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -615,15 +507,17 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CONNECT
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("Connect",function(Passport,source)
+AddEventHandler("playerConnect",function(Passport,source)
 	TriggerClientEvent("propertys:Table",source,Propertys,Interiors,Markers)
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- DISCONNECT
 -----------------------------------------------------------------------------------------------------------------------------------------
-AddEventHandler("Disconnect",function(Passport)
+AddEventHandler("playerDisconnect",function(Passport)
 	if Inside[Passport] then
-		vRP.InsidePropertys(Passport,Propertys[Inside[Passport]])
+		local homeName = Inside[Passport]
+		-- vRP.InsidePropertys(Passport,Propertys[Inside[Passport]])
+		vRP.updateHomePosition(user_id,Propertys[homeName][1],Propertys[homeName][2],Propertys[homeName][3])
 		Inside[Passport] = nil
 	end
 end)

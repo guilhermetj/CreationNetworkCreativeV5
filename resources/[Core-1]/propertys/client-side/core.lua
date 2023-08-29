@@ -106,7 +106,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 function ClothesMenu()
 	exports["dynamic"]:AddButton("Guardar","Salvar suas vestimentas do corpo.","propertys:Clothes","save",false,true)
-	exports["dynamic"]:AddButton("Shopping","Abrir a loja de vestimentas.","skinshop:Open","",false,false)
+		exports["dynamic"]:AddButton("Shopping","Abrir a loja de vestimentas.","propertys:openShop","",false,true)
 	exports["dynamic"]:SubMenu("Vestir","Abrir lista com todas as vestimentas.","apply")
 	exports["dynamic"]:SubMenu("Remover","Abrir lista com todas as vestimentas.","delete")
 
@@ -142,12 +142,6 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- REQUEST
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNUICallback("Request",function(Data,Callback)
--- 	local Inventory,Chest,InvPeso,InvMax,ChestPeso,ChestMax = vSERVER.OpenChest(Init,Chest)
--- 	if Inventory then
--- 		Callback({ Inventory = Inventory, Chest = Chest, InvPeso = InvPeso, InvMax = InvMax, ChestPeso = ChestPeso, ChestMax = ChestMax })
--- 	end
--- end)
 RegisterNUICallback("requestChest",function(data,cb)
 	local myInventory,myChest,invPeso,invMaxpeso,chestPeso,chestMaxpeso = vSERVER.openChest(Init,Chest)
 	print(myInventory)
@@ -162,12 +156,6 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CLOSE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNUICallback("Close",function(Data,Callback)
--- 	SendNUIMessage({ Action = "Hide" })
--- 	SetNuiFocus(false,false)
-
--- 	Callback("Ok")
--- end)
 RegisterNUICallback("invClose",function()
 	SendNUIMessage({ action = "hideMenu" })
 	SetNuiFocus(false,false)
@@ -175,11 +163,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- TAKE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNUICallback("Take",function(Data,Callback)
--- 	vSERVER.Take(Data["slot"],Data["amount"],Data["target"],Init,Chest)
 
--- 	Callback("Ok")
--- end)
 RegisterNUICallback("takeItem",function(data)
 	if MumbleIsConnected() then
 		vSERVER.takeItem(data["slot"],data["amount"],data["target"],Init,Chest)
@@ -188,11 +172,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- STORE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNUICallback("Store",function(Data,Callback)
--- 	vSERVER.Store(Data["item"],Data["slot"],Data["amount"],Data["target"],Init,Chest)
 
--- 	Callback("Ok")
--- end)
 RegisterNUICallback("storeItem",function(data)
 	if MumbleIsConnected() then
 		vSERVER.storeItem(data["item"],data["slot"],data["amount"],data["target"],Init,Chest)
@@ -201,11 +181,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNUICallback("Update",function(Data,Callback)
--- 	vSERVER.Update(Data["slot"],Data["target"],Data["amount"],Init,Chest)
 
--- 	Callback("Ok")
--- end)
 RegisterNUICallback("updateChest",function(data)
 	if MumbleIsConnected() then
 		vSERVER.updateChest(data["slot"],data["target"],data["amount"],Init,Chest)
@@ -214,10 +190,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PROPERTYS:UPDATE
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNetEvent("propertys:Update")
--- AddEventHandler("propertys:Update",function()
--- 	SendNUIMessage({ action = action })
--- end)
+
 RegisterNetEvent("propertys:Update")
 AddEventHandler("propertys:Update",function(action)
 	SendNUIMessage({ action = action })
@@ -225,10 +198,7 @@ end)
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- PROPERTYS:WEIGHT
 -----------------------------------------------------------------------------------------------------------------------------------------
--- RegisterNetEvent("propertys:Weight")
--- AddEventHandler("propertys:Weight",function(invPeso,invMaxpeso,chestPeso,chestMaxpeso)
--- 	SendNUIMessage({ action = "updateWeight", invPeso = invPeso, invMaxpeso = invMaxpeso, chestPeso = chestPeso, chestMaxpeso = chestMaxpeso })
--- end)
+
 RegisterNetEvent("propertys:Weight")
 AddEventHandler("propertys:Weight",function(invPeso,invMaxpeso,chestPeso,chestMaxpeso)
 	SendNUIMessage({ action = "updateWeight", invPeso = invPeso, invMaxpeso = invMaxpeso, chestPeso = chestPeso, chestMaxpeso = chestMaxpeso })

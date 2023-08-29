@@ -588,7 +588,7 @@ AddEventHandler("inventory:Deliver",function(Slot,Amount)
 				return
 			end
 
-			if exports["homes"]:initNewspapers(source) then
+			if exports["propertys"]:initNewspapers(source) then
 				vRP.generateItem(user_id,"dollars",60,true)
 
 				if vRP.userPremium(user_id) then
@@ -1842,23 +1842,26 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 					if exports["hud"]:Wanted(user_id) then
 						return
 					end
-
+					print("lockpick")
 					local homeName = exports["propertys"]:homesTheft(source)
 					if homeName then
+						print("homew")
 						vRPC.stopActived(source)
 						vRP.upgradeStress(user_id,2)
 						Active[user_id] = os.time() + 100
 						TriggerClientEvent("inventory:Close",source)
 						TriggerClientEvent("inventory:Buttons",source,true)
 						vRPC.playAnim(source,false,{"missheistfbi3b_ig7","lift_fibagent_loop"},false)
-
 						if vTASKBAR.taskLockpick(source) then
 							exports["propertys"]:enterHomes(source,user_id,homeName,true)
+							print("task")
 						else
 							exports["propertys"]:resetTheft(homeName)
+							print("task2")
 						end
-
+						print("coe")
 						if parseInt(math.random(1000)) >= 900 then
+							print("broken")
 							vRP.generateItem(user_id,"brokenpick",1,false)
 							vRP.removeInventoryItem(user_id,totalName,1,false)
 							TriggerClientEvent("itensNotify",source,{ "quebrou","lockpick2",1,"Lockpick de Cobre" })
@@ -1867,6 +1870,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 						TriggerClientEvent("inventory:Buttons",source,false)
 						vRPC.stopAnim(source,false)
 						Active[user_id] = nil
+						print("stop")
 					end
 				end
 			return end
@@ -2380,7 +2384,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "weedseed" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local consultItem = vRP.getInventoryItemAmount(user_id,"bucket")
 					if consultItem[1] <= 0 then
@@ -2400,7 +2404,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "cokeseed" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local consultItem = vRP.getInventoryItemAmount(user_id,"bucket")
 					if consultItem[1] <= 0 then
@@ -2420,7 +2424,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "mushseed" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					local rand = math.random(2)
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords = vRPC.objectCoords(source,"prop_stoneshroom"..rand)
@@ -2434,7 +2438,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "coketable" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"bkr_prop_coke_table01a")
 					if application then
@@ -2454,7 +2458,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "methtable" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"bkr_prop_meth_table01a")
 					if application then
@@ -2474,7 +2478,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "weedtable" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"bkr_prop_weed_table_01a")
 					if application then
@@ -2494,7 +2498,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "campfire" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"prop_beach_fire")
 					if application then
@@ -2514,7 +2518,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "barrier" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"prop_mp_barrier_02b")
 					if application then
@@ -2534,7 +2538,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "medicbag" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"xm_prop_x17_bag_med_01a")
 					if application then
@@ -2554,7 +2558,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 			return end
 
 			if nameItem == "chair01" then
-				if not exports["homes"]:checkHotel(user_id) then
+				if not exports["propertys"]:checkHotel(user_id) then
 					TriggerClientEvent("inventory:Close",source)
 					local application,coords,heading = vRPC.objectCoords(source,"prop_off_chair_01")
 					if application then

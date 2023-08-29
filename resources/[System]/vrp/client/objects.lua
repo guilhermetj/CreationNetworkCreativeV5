@@ -270,6 +270,71 @@ function tvRP.objectCoords(model)
 	return aplicationObject,newCoords,headObject
 end
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- OBJECTCOORDS
+-----------------------------------------------------------------------------------------------------------------------------------------
+function tvRP.objectCoords2(Model)
+	local Aplication = false
+	local ObjectCoords = false
+	local ObjectHeading = false
+
+	if LoadModel(Model) then
+		local Progress = true
+		local Ped = PlayerPedId()
+		local Coords = GetEntityCoords(Ped)
+		local Heading = GetEntityHeading(Ped)
+		local NextObject = CreateObjectNoOffset(Model,Coords["x"],Coords["y"],Coords["z"],false,false,false)
+		SetEntityCollision(NextObject,false,false)
+		SetEntityHeading(NextObject,Heading)
+		SetEntityAlpha(NextObject,100,false)
+
+		while Progress do
+			local Ped = PlayerPedId()
+			local Cam = GetGameplayCamCoord()
+			local Handle = StartExpensiveSynchronousShapeTestLosProbe(Cam,GetCoordsFromCam(10.0,Cam),-1,Ped,4)
+			local _,_,Coords = GetShapeTestResult(Handle)
+
+			if Model == "prop_ld_binbag_01" then
+				SetEntityCoords(NextObject,Coords["x"],Coords["y"],Coords["z"] + 0.9,false,false,false,false)
+			else
+				SetEntityCoords(NextObject,Coords["x"],Coords["y"],Coords["z"],false,false,false,false)
+			end
+
+			dwText("~g~F~w~  CANCELAR",4,0.015,0.86,0.38,255,255,255,255)
+			dwText("~g~E~w~  COLOCAR OBJETO",4,0.015,0.89,0.38,255,255,255,255)
+			dwText("~y~SCROLL UP~w~  GIRA ESQUERDA",4,0.015,0.92,0.38,255,255,255,255)
+			dwText("~y~SCROLL DOWN~w~  GIRA DIREITA",4,0.015,0.95,0.38,255,255,255,255)
+
+			if IsControlJustPressed(1,38) then
+				Aplication = true
+				Progress = false
+			end
+
+			if IsControlJustPressed(0,49) then
+				Progress = false
+			end
+
+			if IsControlJustPressed(0,180) then
+				local Heading = GetEntityHeading(NextObject)
+				SetEntityHeading(NextObject,Heading + 2.5)
+			end
+
+			if IsControlJustPressed(0,181) then
+				local Heading = GetEntityHeading(NextObject)
+				SetEntityHeading(NextObject,Heading - 2.5)
+			end
+
+			Wait(1)
+		end
+
+		ObjectCoords = GetEntityCoords(NextObject)
+		ObjectHeading = GetEntityHeading(NextObject)
+
+		DeleteEntity(NextObject)
+	end
+
+	return Aplication,ObjectCoords,ObjectHeading
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- DWTEXT
 -----------------------------------------------------------------------------------------------------------------------------------------
 function dwText(text,font,x,y,scale,r,g,b,a)

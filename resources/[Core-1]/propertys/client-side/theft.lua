@@ -46,17 +46,12 @@ end
 -- LOCKERCOORDS
 -----------------------------------------------------------------------------------------------------------------------------------------
 local lockerCoords = {
-	["Franklin"] = { 24.04,-24.98,-24.01,303.31 },
-	["Lostudios"] = { 53.75,-52.0,-24.01,51.03 },
-	["OneFloors"] = { 91.43,74.91,-24.01,85.04 },
-	["ThreeFloors"] = { 120.06,-122.07,-27.4,280.63 },
-	["TwoFloors"] = { 165.66,-151.71,-17.79,45.36 },
-	["Square"] = { 73.43,68.17,-23.4,73.71 },
-	["Trailer"] = { 3.49,-2.00,1499.00,180.0 },
-	["Middle"] = { 93.24,-103.18,-24.2,226.78 },
-	["Motel"] = { -5.10,2.78,1499.80,90.0 },
-	["Modern"] = { 4.64,6.27,1499.10,270.0 },
-	["Beach"] = { 8.76,0.49,1499.05,270.0 },
+	["ThreeFloors"] = { 128.14,-120.54,-28.4,280.63 }, --OK
+	["TwoFloors"] = { 144.18,-148.68,-25.0,34.02 }, --OK
+	["Square"] = { 62.76,79.35,-25.6,0.0}, --OK
+	["Middle"] = { 106.26,-99.78,-25.2,226.78 }, --OK
+	["Motel"] = { 54.33,-45.94,-25.0,229.61 }, --ok
+	["Beach"] = { 294.69,-293.68,-24.99,48.19 } --ok
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- THEFTCOORDS
@@ -76,19 +71,8 @@ local TheftCoords = {
 		["MOBILE11"] = { 296.14,-300.98,-23.99,141.74 },
 		["MOBILE12"] = { 293.94,-299.51,-23.99,141.74 },
 		["MOBILE13"] = { 296.04,-292.86,-23.99,348.67 },
-		["MOBILE14"] = { 298.92,-295.06,-23.99,320.32 }
-	},
-	["Franklin"] = {
-		["MOBILE01"] = { 25.09,-26.05,-24.01,226.78 },
-		["MOBILE02"] = { 23.7,-21.95,-24.01,51.03 },
-		["MOBILE03"] = { 25.47,-20.55,-24.01,5.67 },
-		["MOBILE04"] = { 23.66,-27.66,-24.01,240.95 },
-		["MOBILE05"] = { 18.94,-32.54,-24.01,136.07 },
-		["MOBILE06"] = { 26.39,-33.44,-24.01,138.9 },
-		["MOBILE07"] = { 26.8,-30.11,-24.01,325.99 },
-		["MOBILE08"] = { 30.98,-28.27,-24.01,235.28 },
-		["MOBILE09"] = { 30.94,-25.88,-24.01,51.03 },
-		["LOCKER"] = { 24.04,-24.98,-24.01,303.31 }
+		["MOBILE14"] = { 298.92,-295.06,-23.99,320.32 },
+		["LOCKER"] = { 294.69,-293.68,-23.99,48.19 }
 	},
 	["Middle"] = {
 		["MOBILE01"] = { 94.66,-99.23,-24.2,320.32 },
@@ -103,16 +87,7 @@ local TheftCoords = {
 		["MOBILE10"] = { 97.01,-108.4,-24.2,229.61 },
 		["MOBILE11"] = { 97.32,-106.37,-24.2,323.15 },
 		["MOBILE12"] = { 99.17,-105.46,-24.2,323.15 },
-		["LOCKER"] = { 93.24,-103.18,-24.2,226.78}
-	},
-	["Modern"] = {
-		["MOBILE01"] = { 400.05,-395.15,-25.75,340.16 },
-		["MOBILE02"] = { 397.93,-399.53,-25.8,158.75 },
-		["MOBILE03"] = { 396.36,-400.86,-25.8,70.87 },
-		["MOBILE04"] = { 395.49,-403.09,-25.8,68.04 },
-		["MOBILE05"] = { 398.63,-403.76,-25.8,252.29 },
-		["MOBILE06"] = { 399.59,-401.68,-25.8,252.29 },
-		["MOBILE07"] = { 402.1,-400.6,-25.8,343.0 }
+		["LOCKER"] = { 106.26,-99.78,-25.2,226.78 }
 	},
 	["Motel"] = {
 		["MOBILE01"] = { 46.82,-44.94,-24.01,51.03 },
@@ -121,7 +96,8 @@ local TheftCoords = {
 		["MOBILE04"] = { 51.46,-53.39,-24.01,189.93 },
 		["MOBILE05"] = { 47.36,-50.51,-24.01,51.03 },
 		["MOBILE06"] = { 54.44,-45.08,-24.01,325.99 },
-		["MOBILE07"] = { 52.37,-45.44,-24.01,141.74 }
+		["MOBILE07"] = { 52.37,-45.44,-24.01,141.74 },
+		["LOCKER"] = { 54.33,-45.94,-24.01,229.61 }
 	},
 	["Square"] = {
 		["MOBILE01"] = { 83.99,83.45,-24.01,274.97 },
@@ -135,7 +111,7 @@ local TheftCoords = {
 		["MOBILE09"] = { 61.17,70.45,-24.6,274.97 },
 		["MOBILE10"] = { 59.07,70.17,-24.6,90.71 },
 		["MOBILE11"] = { 55.4,73.88,-24.6,181.42 },
-		["LOCKER"] = { 73.43,68.17,-23.4,73.71 }
+		["LOCKER"] = { 62.76,79.35,-24.6,0.0 }
 	},
 	["ThreeFloors"] = {
 		["MOBILE01"] = { 125.56,-109.76,-23.59,2.84 },
@@ -153,15 +129,6 @@ local TheftCoords = {
 		["MOBILE13"] = { 117.97,-111.98,-31.21,5.67 },
 		["LOCKER"] = { 120.06,-122.07,-27.4,280.63 }
 	},
-	["Trailer"] = {
-		["MOBILE01"] = { 496.29,-501.42,-23.61,187.09 },
-		["MOBILE02"] = { 495.13,-501.16,-23.61,90.71 },
-		["MOBILE03"] = { 496.61,-498.47,-23.49,0.0 },
-		["MOBILE04"] = { 500.89,-498.81,-23.61,0.0 },
-		["MOBILE05"] = { 505.72,-501.33,-23.57,274.97 },
-		["MOBILE06"] = { 503.99,-500.8,-23.57,87.88 },
-		["MOBILE07"] = { 501.3,-501.25,-23.59,184.26 }
-	},
 	["TwoFloors"] = {
 		["MOBILE01"] = { 161.82,-153.82,-17.79,124.73 },
 		["MOBILE02"] = { 159.91,-152.22,-17.79,121.89 },
@@ -177,7 +144,7 @@ local TheftCoords = {
 		["MOBILE12"] = { 156.26,-151.34,-24.01,31.19 },
 		["MOBILE13"] = { 150.97,-158.78,-24.01,212.6 },
 		["MOBILE14"] = { 149.4,-156.3,-24.01,39.69 },
-		["LOCKER"] = { 165.66,-151.71,-17.79,45.36 }
+		["LOCKER"] = { 144.18,-148.68,-24.01,34.02 }
 	}
 }
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -196,15 +163,9 @@ function Xurupita.entranceHomes(TheftName,v,Interior,Theft)
 	if Interior == "Beach" then
 		SetEntityCoords(ped,298.05,-303.34,-23.99,1,0,0,0)
 		table.insert(HomesTheft["InternTheft"],{ 298.05,-303.34,-23.99,"exit","Saída" })
-	elseif Interior == "Franklin" then
-		SetEntityCoords(ped,28.58,-24.35,-24.01,1,0,0,0)
-		table.insert(HomesTheft["InternTheft"],{ 28.58,-24.35,-24.01,"exit","Saída" })
 	elseif Interior == "Middle" then
 		SetEntityCoords(ped,86.41,-91.47,-24.2,1,0,0,0)
 		table.insert(HomesTheft["InternTheft"],{ 86.41,-91.47,-24.2,"exit","Saída" })
-	elseif Interior == "Modern" then
-		SetEntityCoords(ped,398.04,-395.06,-25.78,1,0,0,0)
-		table.insert(HomesTheft["InternTheft"],{ 398.04,-395.06,-25.78,"exit","Saída" })
 	elseif Interior == "Motel" then
 		SetEntityCoords(ped,51.61,-39.05,-25.86,1,0,0,0)
 		table.insert(HomesTheft["InternTheft"],{ 51.61,-39.05,-25.86,"exit","Saída" })
@@ -214,9 +175,6 @@ function Xurupita.entranceHomes(TheftName,v,Interior,Theft)
 	elseif Interior == "ThreeFloors" then
 		SetEntityCoords(ped,118.4,-108.39,-23.57,1,0,0,0)
 		table.insert(HomesTheft["InternTheft"],{ 118.4,-108.39,-23.57,"exit","Saída" })
-	elseif Interior == "Trailer" then
-		SetEntityCoords(ped,499.28,-501.96,-23.61,1,0,0,0)
-		table.insert(HomesTheft["InternTheft"],{ 499.28,-501.96,-23.61,"exit","Saída" })
 	elseif Interior == "TwoFloors" then
 		SetEntityCoords(ped,166.78,-144.32,-17.79,1,0,0,0)
 		table.insert(HomesTheft["InternTheft"],{ 166.78,-144.32,-17.79,"exit","Saída" })
@@ -237,12 +195,12 @@ function Xurupita.entranceHomes(TheftName,v,Interior,Theft)
 			HomesTheft["Called"] = true
 			vSERVER.callPolice(HomesTheft["CurrentTheft"][1],HomesTheft["CurrentTheft"][2],HomesTheft["CurrentTheft"][3])
 		end
-		if math.random(100) >= 0 then
+		if math.random(100) >= 80 then
 			if DoesEntityExist(HomesTheft["locker"]) then
+				print("existe locker")
 				DeleteEntity(HomesTheft["locker"])
 				HomesTheft["locker"] = nil
 			end
-			print(Interior)
 			local mHash = GetHashKey("prop_ld_int_safe_01")
 
 			RequestModel(mHash)
@@ -251,11 +209,7 @@ function Xurupita.entranceHomes(TheftName,v,Interior,Theft)
 			end
 
 			if HasModelLoaded(mHash) then
-				local teste = lockerCoords[Interior][1]
-				print(teste)
-				-- HomesTheft["locker"] = CreateObject(mHash,lockerCoords[Interior][1],lockerCoords[Interior][2],lockerCoords[Interior][3],false,false,false)
-				HomesTheft["locker"] = CreateObject(mHash,v[1] + lockerCoords[interior][1],v[2] + lockerCoords[interior][2],lockerCoords[interior][3],false,false,false)
-
+				HomesTheft["locker"] = CreateObject(mHash,lockerCoords[Interior][1],lockerCoords[Interior][2],lockerCoords[Interior][3])
 				SetEntityHeading(HomesTheft["locker"],lockerCoords[Interior][4])
 				FreezeEntityPosition(HomesTheft["locker"],true)
 			end
@@ -293,28 +247,12 @@ CreateThread(function()
 
 							if distance <= 1.25 then
 								timeDistance = 1
-								table.insert(innerTable,{ v[1],v[2],v[3],1.25,"E","Vasculhar","Pressione para vasculhar" })
-
-								-- if IsControlJustPressed(1,38) and MumbleIsConnected() then
-								-- 	LocalPlayer["state"]["Cancel"] = true
-								-- 	vRP.playAnim(false,{"anim@amb@clubhouse@tutorial@bkr_tut_ig3@","machinic_loop_mechandplayer"},true)
-
-								-- 	LocalPlayer["state"]["Commands"] = true
-								-- 	vRP.playAnim(false,{"anim@amb@clubhouse@tutorial@bkr_tut_ig3@","machinic_loop_mechandplayer"},true)
-
-								-- 	TriggerEvent("Progress",10000)
-								-- 	Citizen.Wait(10000)
-
-								-- 	LocalPlayer["state"]["Commands"] = false
-								-- 	vSERVER.paymentTheft("MOBILE")
-								-- 	HomesTheft["TheftCoords"][k] = true
-
-								-- 	LocalPlayer["state"]["Cancel"] = false
-								-- 	vRP.removeObjects()
-								-- end
+								-- table.insert(innerTable,{ v[1],v[2],v[3],1.25,"E","Vasculhar","Pressione para vasculhar" })
+								DrawText3D(v[1],v[2],v[3],"~g~E~w~   VASCULHAR")
 								if IsControlJustPressed(1,38) and MumbleIsConnected() then
+									print(k)
 									if k == "LOCKER" then
-										local safeCracking = exports["safecrack"]:safeCraking(3)
+										local safeCracking = exports["safecrack"]:safeCraking(2)
 										if safeCracking then
 											vSERVER.paymentTheft("LOCKER")
 										end
@@ -373,8 +311,7 @@ CreateThread(function()
 					local distance = #(coords - vec3(v[1],v[2],v[3]))
 					if distance <= 1.25 then
 						timeDistance = 1.25
-						table.insert(innerTable,{ v[1],v[2],v[3],1.25,"E",v[5],"Pressione para acessar" })
-
+						DrawText3D(v[1],v[2],v[3],"~g~E~w~   "..v[5])
 						if IsControlJustPressed(1,38) and MumbleIsConnected() then
 							if v[4] == "exit" then
 								if distance <= 1 then
@@ -421,3 +358,22 @@ RegisterNetEvent("propertys:invadePolice")
 AddEventHandler("propertys:invadePolice",function()
 	LocalPlayer["state"]["Theft"] = true
 end)
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- DRAWTEXT3D
+-----------------------------------------------------------------------------------------------------------------------------------------
+function DrawText3D(x,y,z,text)
+	local onScreen,_x,_y = GetScreenCoordFromWorldCoord(x,y,z)
+
+	if onScreen then
+		BeginTextCommandDisplayText("STRING")
+		AddTextComponentSubstringKeyboardDisplay(text)
+		SetTextColour(255,255,255,150)
+		SetTextScale(0.35,0.35)
+		SetTextFont(4)
+		SetTextCentre(1)
+		EndTextCommandDisplayText(_x,_y)
+
+		local width = string.len(text) / 160 * 0.45
+		DrawRect(_x,_y + 0.0125,width,0.03,15,15,15,175)
+	end
+end

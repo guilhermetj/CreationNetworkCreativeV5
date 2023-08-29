@@ -20,8 +20,7 @@ animsSucceed[4] = "dial_turn_succeed_4"
 -- LOADANIM
 -----------------------------------------------------------------------------------------------------------------------------------------
 exports("safeCraking",function(numbers)
-	vRP.removeObjects()
-
+	print()
 	FreezeEntityPosition(PlayerPedId(),true)
 	RequestAmbientAudioBank("SAFE_CRACK",false)
 	RequestStreamedTextureDict("MPSafeCracking",false)
@@ -39,7 +38,6 @@ exports("safeCraking",function(numbers)
 	if desirednum == 0 then
 		desirednum = 1
 	end
-
 	i = 0.0
 	dicks = 1
 	safelock = 0
@@ -97,7 +95,6 @@ exports("safeCraking",function(numbers)
 		if currentLock > difficulty then
 			break
 		end
-
 		if safelock == desirednum then
 			if not pinfall then
 				PlaySoundFrontend(0,"TUMBLER_PIN_FALL","SAFE_CRACK_SOUNDSET",true)
