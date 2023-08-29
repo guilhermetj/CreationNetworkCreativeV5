@@ -13,6 +13,7 @@ Tunnel.bindInterface("inventory",cRP)
 vPLAYER = Tunnel.getInterface("player")
 vGARAGE = Tunnel.getInterface("garages")
 vTASKBAR = Tunnel.getInterface("taskbar")
+vTASKBAR1 = Tunnel.getInterface("t3_lockpick")
 vDELIVER = Tunnel.getInterface("deliver")
 vCLIENT = Tunnel.getInterface("inventory")
 -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1748,7 +1749,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 							TriggerClientEvent("inventory:Close",source)
 							TriggerClientEvent("inventory:Buttons",source,true)
 
-							if vTASKBAR.taskLockpick(source) then
+							if vTASKBAR1.lockpick(source,"lockpick", 3, 6) then
 								if math.random(100) >= 20 then
 									vRP.upgradeStress(user_id,2)
 									TriggerEvent("plateEveryone",vehPlate)
@@ -1794,7 +1795,7 @@ AddEventHandler("inventory:useItem",function(Slot,Amount)
 							TriggerClientEvent("inventory:Buttons",source,true)
 							vRPC.playAnim(source,false,{"missfbi_s4mop","clean_mop_back_player"},true)
 
-							if vTASKBAR.taskLockpick(source) then
+							if vTASKBAR1.lockpick(source,"lockpick", 3, 6) then
 								if math.random(100) >= 75 then
 									vRP.upgradeStress(user_id,2)
 									TriggerEvent("plateEveryone",vehPlate)
