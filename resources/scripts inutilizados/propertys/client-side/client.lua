@@ -381,8 +381,7 @@ CreateThread(function()
 
 							if distance <= 1.25 then
 								timeDistance = 1
-								DrawText3D(homes["current"][1] + v[1],homes["current"][2] + v[2],1500.0 + v[3],"~g~E~w~   VASCULHAR")
-
+								table.insert(innerTable,{ v[1],v[2],v[3],1.25,"E","Vasculhar","Pressione para vasculhar" })
 
 								if IsControlJustPressed(1,38) and MumbleIsConnected() then
 									if k == "LOCKER" then
@@ -702,6 +701,23 @@ AddEventHandler("propertys:propertyPanel",function()
 
 	exports["dynamic"]:openMenu()
 end)
+-------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------
--- KEYMAPPING
+-- DRAWTEXT3D
 -----------------------------------------------------------------------------------------------------------------------------------------
+function DrawText3D(x,y,z,text)
+	local onScreen,_x,_y = GetScreenCoordFromWorldCoord(x,y,z)
+
+	if onScreen then
+		BeginTextCommandDisplayText("STRING")
+		AddTextComponentSubstringKeyboardDisplay(text)
+		SetTextColour(255,255,255,150)
+		SetTextScale(0.35,0.35)
+		SetTextFont(4)
+		SetTextCentre(1)
+		EndTextCommandDisplayText(_x,_y)
+
+		local width = string.len(text) / 160 * 0.45
+		DrawRect(_x,_y + 0.0125,width,0.03,15,15,15,175)
+	end
+end

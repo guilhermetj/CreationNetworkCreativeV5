@@ -48,7 +48,7 @@ CreateThread(function()
 						Wait(10)
 					end
 
-					Wheel = CreateObjectNoOffset(luckyHash,1111.05,229.85,-49.14,false,false,false)
+					Wheel = CreateObject(luckyHash,1111.05,229.85,-49.14,false,false,false)
 					SetEntityHeading(Wheel,0.0)
 					SetModelAsNoLongerNeeded(luckyHash)
 

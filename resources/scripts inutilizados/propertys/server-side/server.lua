@@ -1828,36 +1828,6 @@ AddEventHandler("homes:doorStatus",function(homeName)
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
--- CLEANHOMES
------------------------------------------------------------------------------------------------------------------------------------------
--- RegisterCommand("cleanhomes",function(source,args,rawCommand)
--- 	local user_id = vRP.getUserId(source)
--- 	if user_id then
--- 		if vRP.hasGroup(user_id,"Admin") then
--- 			local consult = vRP.query("propertys/totalHomes")
--- 			for k,v in pairs(consult) do
--- 				if v["tax"] <= os.time() then
--- 					vRP.execute("propertys/selling",{ name = v["name"] })
--- 					TriggerEvent("garages:removeGarages",v["name"])
--- 					vRP.remSrvdata("wardrobe:"..v["name"])
--- 					vRP.remSrvdata("fridge:"..v["name"])
--- 					vRP.remSrvdata("vault:"..v["name"])
---					homeBlips[homeName]["color"] = 2
--- 				end
--- 			end
--- 		end
--- 	end
--- end)
------------------------------------------------------------------------------------------------------------------------------------------
--- PLAYERCONNECT
------------------------------------------------------------------------------------------------------------------------------------------
-local myHomeList = {}
-AddEventHandler("playerConnect",function(user_id,source)
-	TriggerClientEvent("spawn:justSpawn",source,{},false)
-
-	vCLIENT.updateHomes(source,homes)
-end)
------------------------------------------------------------------------------------------------------------------------------------------
 -- CHECKPERMISSIONS
 -----------------------------------------------------------------------------------------------------------------------------------------
 function cRP.checkPermissions(homeName)
@@ -2380,6 +2350,26 @@ end
 -----------------------------------------------------------------------------------------------------------------------------------------
 -- CALLPOLICE
 -----------------------------------------------------------------------------------------------------------------------------------------
+function cRP.callPolice()
+	local source = source
+	local user_id = vRP.getUserId(source)
+	if user_id then
+		TriggerClientEvent("sounds:source",source,"alarm",1.0)
+
+		local ped = GetPlayerPed(source)
+		local coords = GetEntityCoords(ped)
+
+		local policeResult = vRP.numPermission("Police")
+		for k,v in pairs(policeResult) do
+			async(function()
+				
+			end)
+		end
+	end
+end
+-----------------------------------------------------------------------------------------------------------------------------------------
+-- CALLPOLICE
+-----------------------------------------------------------------------------------------------------------------------------------------
 function cRP.callPolice(disX,disY,disZ)
 	local source = source
 	local user_id = vRP.getUserId(source)
@@ -2492,17 +2482,4 @@ exports("initNewspapers",function(source)
 	end
 
 	return false
-end)
------------------------------------------------------------------------------------------------------------------------------------------
--- HENSAENSUREHOMES
------------------------------------------------------------------------------------------------------------------------------------------
-RegisterCommand("ensurehomes",function(source,args,rawCommand)
-	local user_id = vRP.getUserId(source)
-	if user_id then
-		if vRP.hasGroup(user_id,"Admin") then
-			vCLIENT.updateHomes(-1,homes)
-			vCLIENT.updateHomes(source,homes)
-			TriggerClientEvent("Notify",source,"verde","Casas atualizadas.",5000)
-		end
-	end
 end)

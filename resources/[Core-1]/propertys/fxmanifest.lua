@@ -5,18 +5,17 @@ lua54 "yes"
 ui_page "web-side/index.html"
 
 client_scripts {
-    "@vrp/lib/utils.lua",
-    "config-side/config.lua",
-    "client-side/*"
+	"@vrp/config/Native.lua",
+	"@vrp/lib/utils.lua",
+	"client-side/*"
 }
 
 server_scripts {
-    "@vrp/lib/itemlist.lua",
-    "@vrp/lib/utils.lua",
-    "config-side/config.lua",
-    "server-side/*"
+	"@vrp/lib/itemlist.lua",
+	"@vrp/lib/utils.lua",
+	"server-side/*"
 }
 
 files {
-    "web-side/*"
+	"web-side/*"
 }
