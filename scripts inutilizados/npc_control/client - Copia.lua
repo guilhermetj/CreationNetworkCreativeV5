@@ -27,7 +27,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
-		WORK IN PROGESS // DOES NOT WORK
+		-- WORK IN PROGESS // DOES NOT WORK
         for veh in EnumerateVehicles() do
             if DoesEntityExist(veh) then
 				for i,model in pairs(cfg.vehs) do

@@ -200,7 +200,7 @@ RegisterNetEvent("paramedic:myInjuries")
 AddEventHandler("paramedic:myInjuries",function()
 	myInjuries = not myInjuries
 	local countDiagnostic = 0
-
+	print("coe")
 	while true do
 		if countDiagnostic >= 1000 or not myInjuries then
 			myInjuries = false
